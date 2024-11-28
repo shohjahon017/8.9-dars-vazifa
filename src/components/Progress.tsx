@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface ProgressBarProps {
+  progress: number;
+}
+
 const ProgressContainer = styled.div`
   width: 100%;
   background-color: #e0e0e0;
@@ -7,7 +11,7 @@ const ProgressContainer = styled.div`
   overflow: hidden;
 `;
 
-const ProgressBar = styled.div`
+const ProgressBar = styled.div<ProgressBarProps>`
   height: 30px;
   width: ${(props) => props.progress}%;
   background-color: #4caf50;
@@ -22,7 +26,11 @@ const ProgressText = styled.div`
   text-align: center;
 `;
 
-const ProgressComponent = ({ progress }) => {
+interface ProgressComponentProps {
+  progress: number;
+}
+
+const ProgressComponent: React.FC<ProgressComponentProps> = ({ progress }) => {
   return (
     <div>
       <ProgressText>{progress}%</ProgressText>
@@ -34,7 +42,7 @@ const ProgressComponent = ({ progress }) => {
   );
 };
 
-const ChartProgress = () => {
+const ChartProgress: React.FC = () => {
   return <ProgressComponent progress={78} />;
 };
 

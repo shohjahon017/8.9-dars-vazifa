@@ -1,7 +1,7 @@
 const competencies = [
   { percentage: 85, label: "Стратегик фикрлаш", color: "#28A264" },
   { percentage: 75, label: "Натижага йуналганлик", color: "#28A264" },
-  { percentage: 33, label: "Узгаришларни бошкариш", color: "#B3B3B3" },
+  { percentage: 33, label: "Узгаришларни бошкариш", color: "red" },
   { percentage: 100, label: "Лидерлик", color: "#0956AF" },
   { percentage: 98, label: "Уз-узини ривожлантириш", color: "#28A264" },
   { percentage: 45, label: "Коммуника-тивлик", color: "#F8B324" },

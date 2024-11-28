@@ -9,7 +9,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
+interface ChartData {
+  date: string;
+  value: number;
+}
+const data: ChartData[] = [
   { date: "12.06", value: 20 },
   { date: "18.06", value: 40 },
   { date: "03.07", value: 75 },
@@ -19,7 +23,7 @@ const data = [
   { date: "24.07", value: 70 },
 ];
 
-const LineChartComponent = () => {
+const LineChartComponent: React.FC = () => {
   return (
     <ResponsiveContainer width="100%" height={300}>
       <LineChart data={data}>
@@ -28,13 +32,13 @@ const LineChartComponent = () => {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="tone" dataKey="value" stroke="blue" dot={true} />
+        <Line type="monotone" dataKey="value" stroke="blue" dot={true} />
       </LineChart>
     </ResponsiveContainer>
   );
 };
 
-const ChartLineProg = () => {
+const ChartLineProg: React.FC = () => {
   return (
     <div>
       <LineChartComponent />

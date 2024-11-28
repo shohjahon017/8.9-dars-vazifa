@@ -10,7 +10,7 @@ import ChartProgressBarRight from "./components/ChartBarRight";
 import ChartRadarProg from "./components/ChartRadar";
 import CompetenceChart from "./components/CompetentChart";
 
-interface DataType {
+interface PersonalInfo {
   firstName: string;
   imageUrl: string;
   lastName: string;
@@ -23,9 +23,21 @@ interface DataType {
   candidate: string;
 }
 
-const App = () => {
-  const [data, setData] = useState<DataType | null>(null);
-  const [testData, setTestData] = useState<any>(null);
+interface TestData {
+  constitution?: number;
+  ict?: number;
+  history?: number;
+  logic?: number;
+  thinking?: number;
+  categories?: Array<{
+    name: string;
+    score: number;
+  }>;
+}
+
+const App: React.FC = () => {
+  const [data, setData] = useState<PersonalInfo | null>(null);
+  const [testData, setTestData] = useState<TestData | null>(null);
 
   useEffect(() => {
     axios
@@ -67,6 +79,7 @@ const App = () => {
       },
     ],
   };
+  console.log(radarData);
 
   return (
     <div className="container mx-auto">
@@ -74,7 +87,7 @@ const App = () => {
       <div className="flex items-center gap-8 mx-[64px] mt-[35px]">
         {data && (
           <>
-            <img src={data.imageUrl} alt="" />
+            <img src={data.imageUrl} alt="Profile" />
             <div className="flex gap-[247px]">
               <div>
                 <div className="mb-[30px]">
@@ -124,14 +137,13 @@ const App = () => {
 
       <div className="mt-8">
         <div className="flex items-center gap-[10px] ml-16">
-          {" "}
           <div className="w-[13px] h-[43px] bg-[#0956AF]"></div>
           <h3 className="text-4xl font-semibold ">Билим тести</h3>
           <div className="h-1 bg-[#DEE2E6] w-[1050px]"></div>
         </div>
         <div className="grid grid-cols-3 gap-6 mt-4">
           {testData?.categories &&
-            testData.categories.map((category: any, index: number) => (
+            testData.categories.map((category, index) => (
               <div key={index} className="text-center">
                 <h5 className="text-lg font-semibold">{category.name}</h5>
                 <div className="relative">
@@ -155,79 +167,60 @@ const App = () => {
           <Charts />
         </div>
         <div>
-          <Example></Example>
+          <Example />
         </div>
-        <div className="flex flex-col ">
+        <div className="flex flex-col">
           <div className="w-[333px]">
-            <ChartLineProg></ChartLineProg>
+            <ChartLineProg />
           </div>
           <div>
-            <ChartProgress></ChartProgress>
+            <ChartProgress />
           </div>
         </div>
         <div className="ml-6">
-          <img className="h-[322px]" src="/graph.png" alt="" />
+          <img className="h-[322px]" src="/graph.png" alt="Graph" />
         </div>
       </div>
-      <div className="mt-8 flex  items-center gap-[10px] ml-16">
+      <div className="mt-8 flex items-center gap-[10px] ml-16">
         <div className="w-[13px] h-[43px] bg-[#0956AF]"></div>
-        <h4 className="font-semibold text-4xl">
-          Шахсий ва касбий хусусиятлар
-        </h4>{" "}
+        <h4 className="font-semibold text-4xl">Шахсий ва касбий хусусиятлар</h4>
         <div className="h-1 bg-[#DEE2E6] w-[706px]"></div>
       </div>
       <div className="flex gap-6 items-center">
-        <div className="">
-          {" "}
-          <ChartBarProg></ChartBarProg>
+        <div>
+          <ChartBarProg />
         </div>
         <div className="h-[218px]">
-          {" "}
-          <ChartRadarProg></ChartRadarProg>
+          <ChartRadarProg />
         </div>
         <div>
-          {" "}
-          <ChartProgressBarRight></ChartProgressBarRight>
+          <ChartProgressBarRight />
         </div>
       </div>
-      <div>
-        <div className="ml-16">
-          {" "}
-          <div className="flex items-center gap-[10px] mt-20 ">
-            {" "}
-            <div className="w-[13px] h-[43px] bg-[#0956AF]"></div>
-            <h1 className="text-3xl font-bold mb-4 text-black">
-              Психологик диагностика
-            </h1>
-            <div className="h-1 bg-[#DEE2E6] w-[823px]"></div>
-          </div>
-          <p className="text-gray-800 text-2xl leading-relaxed gap-6 flex max-w-[1204px]">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries{" "}
-            <span className="max-w-[864px]">
-              a type specimen book. It has survived not only five centuries but
-              also the leap into electronic typesetting, remaining essentially
-              unchanged. It was popularised in the 1960s with the release of...
-            </span>
-          </p>
+      <div className="ml-16">
+        <div className="flex items-center gap-[10px] mt-20">
+          <div className="w-[13px] h-[43px] bg-[#0956AF]"></div>
+          <h1 className="text-3xl font-bold mb-4 text-black">
+            Психологик диагностика
+          </h1>
+          <div className="h-1 bg-[#DEE2E6] w-[823px]"></div>
         </div>
+        <p className="text-gray-800 text-2xl leading-relaxed gap-6 flex max-w-[1204px]">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry...
+        </p>
       </div>
       <div className="ml-16 items-center">
-        {" "}
-        <div className="flex items-center gap-[10px] mt-20 ">
-          {" "}
+        <div className="flex items-center gap-[10px] mt-20">
           <div className="w-[13px] h-[43px] bg-[#0956AF]"></div>
           <h1 className="text-3xl font-bold mb-4 text-black">
             Компетенцияларнинг намоён булиши
           </h1>
           <div className="h-1 bg-[#DEE2E6] w-[593px]"></div>
-        </div>{" "}
+        </div>
         <div className="flex mt-8">
-          <CompetenceChart></CompetenceChart>
-          <img className="mr-16" src="/qr.png" alt="" />
+          <CompetenceChart />
+          <img className="mr-16" src="/qr.png" alt="QR" />
         </div>
         <p className="flex justify-center mb-10">Argos.uz 2024</p>
       </div>

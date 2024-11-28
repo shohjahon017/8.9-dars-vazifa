@@ -32,19 +32,19 @@ const RadarChart = () => {
               />
             );
           })}
-          {/* Outer polygon */}
           <polygon
             points={data
               .map((item, index) => {
                 const x = radius * Math.cos(angle * index - Math.PI / 2);
                 const y = radius * Math.sin(angle * index - Math.PI / 2);
+                console.log(item);
+
                 return `${x},${y}`;
               })
               .join(" ")}
             fill="rgba(200, 200, 200, 0.5)"
             stroke="none"
           />
-          {/* Inner values */}
           <polygon
             points={data
               .map((item, index) => {
@@ -60,7 +60,6 @@ const RadarChart = () => {
             fill="none"
             stroke="none"
           />
-          {/* Labels */}
           {data.map((item, index) => {
             const x = (radius + 10) * Math.cos(angle * index - Math.PI / 2);
             const y = (radius + 10) * Math.sin(angle * index - Math.PI / 2);

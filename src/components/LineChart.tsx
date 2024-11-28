@@ -2,21 +2,26 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { RadialBarChart, RadialBar, ResponsiveContainer } from "recharts";
 
-const Charts = () => {
-  const [chartone, setchartone] = useState([]);
+interface SemiChart {
+  label: string;
+  percentage: number;
+}
+
+const Charts: React.FC = () => {
+  const [chartone, setChartone] = useState<SemiChart[]>([]);
 
   useEffect(() => {
     axios
       .get("https://trello.vimlc.uz/knowlodge")
       .then((data) => {
-        setchartone(data.data.semicharts);
+        setChartone(data.data.semicharts);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }, []);
 
-  const getFillColor = (percentage) => {
+  const getFillColor = (percentage: number): string => {
     if (percentage >= 100) {
       return "blue";
     } else if (percentage >= 80) {
@@ -41,7 +46,7 @@ const Charts = () => {
               height: 198,
               textAlign: "center",
               marginTop: "50px",
-              padding: "-0px",
+              padding: "0px",
             }}
           >
             <ResponsiveContainer className="mx-auto">
@@ -52,7 +57,6 @@ const Charts = () => {
                 outerRadius="100%"
                 startAngle={180}
                 endAngle={0}
-                // barSize={10}
                 data={[
                   {
                     name: item.label,
@@ -61,7 +65,7 @@ const Charts = () => {
                   },
                 ]}
               >
-                <RadialBar minAngle={15} dataKey="value" clockWise />
+                <RadialBar minAngle={5} dataKey="value" clockWise />
               </RadialBarChart>
             </ResponsiveContainer>
             <p style={{ marginTop: "-120px" }}>
