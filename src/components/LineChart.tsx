@@ -65,7 +65,7 @@ const Charts: React.FC = () => {
                   },
                 ]}
               >
-                <RadialBar minAngle={5} dataKey="value" clockWise />
+                <RadialBar dataKey="value" />
               </RadialBarChart>
             </ResponsiveContainer>
             <p style={{ marginTop: "-120px" }}>
